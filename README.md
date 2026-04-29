@@ -1,6 +1,31 @@
 # 🛡️ Sec_search — 网络安全信息搜集指南
 
-> 一份系统化的网络安全信息搜集资源汇总，涵盖漏洞情报、威胁情报、工具、社区与学习资源。
+> 一份系统化的网络安全信息搜集资源汇总，涵盖漏洞情报、威胁情报、工具、社区与学习资源。同时提供每日自动更新的 GitHub 安全项目库雷达。
+
+---
+
+## 📡 每日安全项目库雷达
+
+每日自动更新的**网络安全项目库雷达**，涵盖最近 7 天内有推送的 GitHub 仓库，按四大类分组展示。
+
+👉 [查看最新报告 LATEST_SECURITY_REPOS.md](./LATEST_SECURITY_REPOS.md)
+
+| 分类 | 关键词示例 |
+|------|-----------|
+| 🔴 网络安全渗透 / 红队 | penetration, pentest, 渗透测试, red team, 红队 |
+| 🛠️ 网络安全工具 | security tool, scanner, recon, 信息收集, exploit |
+| 🤖 大模型安全 | LLM security, 大模型安全, prompt injection, guardrails |
+| 🔓 大模型越狱 | jailbreak, 越狱, prompt hacking, 提示越狱 |
+
+- **定时运行**：每天 UTC 00:00（北京时间 08:00）由 GitHub Actions 自动运行
+- **手动触发**：在 [Actions 页面](../../actions/workflows/security-radar.yml) 点击 **Run workflow**
+
+本地手动运行：
+```bash
+pip install requests
+export GITHUB_TOKEN=your_personal_access_token  # 可选，提高 API 速率限制
+python scripts/security_radar.py
+```
 
 ---
 

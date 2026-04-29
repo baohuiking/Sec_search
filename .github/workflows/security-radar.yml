@@ -1,0 +1,49 @@
+name: Daily Security Project Radar
+
+on:
+  schedule:
+    # UTC 00:00 daily = Beijing time 08:00
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+    inputs:
+      top_n:
+        description: "Number of repos to list per category (default: 30)"
+        required: false
+        default: "30"
+
+permissions:
+  contents: write
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Security Radar script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOP_N: ${{ github.event.inputs.top_n || '30' }}
+        run: python scripts/security_radar.py
+
+      - name: Commit and push report if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add LATEST_SECURITY_REPOS.md
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: update LATEST_SECURITY_REPOS.md [$(date -u +%Y-%m-%d)]"
+            git push
+          fi
