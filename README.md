@@ -254,6 +254,7 @@ python scripts/security_radar.py
 
 | 工具 | 说明 |
 |------|------|
+| [Dark-Moon](https://github.com/ASCIT31/Dark-Moon) | 开源自主 AI 渗透测试框架，多智能体编排 + MCP 主机 |
 | [Metasploit](https://www.metasploit.com/) | 最流行的渗透测试框架 |
 | [Cobalt Strike](https://www.cobaltstrike.com/) | 红队攻击模拟平台 |
 | [Burp Suite](https://portswigger.net/burp) | Web 渗透测试利器 |
